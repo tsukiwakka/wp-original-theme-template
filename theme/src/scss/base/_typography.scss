@@ -1,0 +1,87 @@
+// ============================================================
+// タイポグラフィ
+// WordPress の the_content() が出力するHTML要素にスタイルを当てる
+// ============================================================
+@use "../abstracts/variables" as *;
+
+// WordPress の投稿本文コンテナ
+.entry-content,
+.wp-block-post-content {
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.2;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+  }
+
+  h1 { font-size: 2.25rem; }
+  h2 { font-size: 1.875rem; }
+  h3 { font-size: 1.5rem; }
+  h4 { font-size: 1.25rem; }
+
+  p { margin-bottom: 1.25rem; }
+
+  ul, ol {
+    margin-bottom: 1.25rem;
+    padding-left: 1.75rem;
+  }
+
+  ul { list-style-type: disc; }
+  ol { list-style-type: decimal; }
+
+  li { margin-bottom: 0.25rem; }
+
+  blockquote {
+    border-left: 4px solid $color-primary;
+    padding-left: 1.25rem;
+    margin-inline: 0;
+    color: #6b7280;
+    font-style: italic;
+  }
+
+  code {
+    font-family: $font-mono;
+    font-size: 0.875em;
+    background: #f3f4f6;
+    padding: 0.1em 0.4em;
+    border-radius: 0.25rem;
+  }
+
+  pre {
+    background: #111827;
+    color: #f9fafb;
+    padding: 1.25rem;
+    border-radius: $border-radius-base;
+    overflow-x: auto;
+    margin-bottom: 1.25rem;
+
+    code {
+      background: none;
+      padding: 0;
+      color: inherit;
+    }
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.25rem;
+
+    th, td {
+      padding: 0.75rem 1rem;
+      border: 1px solid #e5e7eb;
+      text-align: left;
+    }
+
+    th {
+      background: #f9fafb;
+      font-weight: 600;
+    }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    margin-block: 2rem;
+  }
+}

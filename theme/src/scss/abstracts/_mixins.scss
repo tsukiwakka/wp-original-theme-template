@@ -1,0 +1,73 @@
+// ============================================================
+// SCSS ミックスイン集
+// ============================================================
+@use "variables" as *;
+
+// ============================================================
+// レスポンシブ ミックスイン
+// 使用例: @include respond-to(md) { ... }
+// ============================================================
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: #{$bp-sm}) { @content; }
+  } @else if $breakpoint == md {
+    @media (min-width: #{$bp-md}) { @content; }
+  } @else if $breakpoint == lg {
+    @media (min-width: #{$bp-lg}) { @content; }
+  } @else if $breakpoint == xl {
+    @media (min-width: #{$bp-xl}) { @content; }
+  } @else if $breakpoint == 2xl {
+    @media (min-width: #{$bp-2xl}) { @content; }
+  }
+}
+
+// ============================================================
+// フレックスボックス ショートハンド
+// ============================================================
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// ============================================================
+// テキスト省略
+// ============================================================
+@mixin truncate($lines: 1) {
+  @if $lines == 1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// ============================================================
+// ホバーエフェクト
+// ============================================================
+@mixin hover-lift {
+  transition: transform $transition-base, box-shadow $transition-base;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// ============================================================
+// コンテナ
+// ============================================================
+@mixin container {
+  max-width: $container-max-width;
+  margin-inline: auto;
+  padding-inline: $container-padding;
+}

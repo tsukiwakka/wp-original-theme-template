@@ -1,0 +1,62 @@
+name: Deploy to Production
+
+# main ブランチへのマージ（push）時のみ実行
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    name: レンタルサーバーへデプロイ
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 依存関係インストール
+        run: npm ci
+
+      - name: 本番ビルド
+        run: npm run build
+
+      # ビルド成果物の確認（デバッグ用）
+      - name: ビルド成果物を確認
+        run: ls -la theme/dist/
+
+      # SSH 秘密鍵をセットアップ
+      - name: SSH キーのセットアップ
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          # サーバーのホスト鍵を known_hosts に追加（初回接続のプロンプトを回避）
+          ssh-keyscan -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      # rsync でテーマファイルをサーバーに転送
+      # - ビルド成果物（dist/）も含めて転送
+      # - .vite-dev-server などの開発用ファイルは除外
+      - name: rsync でデプロイ
+        run: |
+          rsync -avz --delete \
+            --exclude='.vite-dev-server' \
+            --exclude='src/' \
+            --exclude='.DS_Store' \
+            --exclude='node_modules/' \
+            -e "ssh -p ${{ secrets.SSH_PORT }} -i ~/.ssh/id_ed25519" \
+            ./theme/ \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.DEPLOY_PATH }}/
+
+      # デプロイ後にキャッシュをクリア（WP Super Cache 等を使っている場合）
+      # - name: WordPress キャッシュクリア
+      #   run: |
+      #     ssh -p ${{ secrets.SSH_PORT }} -i ~/.ssh/id_ed25519 \
+      #       ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+      #       "cd ${{ secrets.DEPLOY_PATH_WP }} && wp cache flush --allow-root"
+
+      - name: デプロイ完了通知
+        run: echo "✅ デプロイ完了"

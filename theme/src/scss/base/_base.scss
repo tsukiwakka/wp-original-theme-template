@@ -1,0 +1,48 @@
+// ============================================================
+// ベーススタイル
+// ============================================================
+@use "../abstracts/variables" as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  font-family: $font-sans;
+  color: $color-dark;
+  background-color: $color-light;
+  line-height: 1.6;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: $color-primary;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: opacity 150ms ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+// WordPress: アラインメントクラス
+.alignleft  { float: left; margin-right: 1.5rem; margin-bottom: 1rem; }
+.alignright { float: right; margin-left: 1.5rem; margin-bottom: 1rem; }
+.aligncenter { display: block; margin-inline: auto; margin-bottom: 1rem; }
+.alignwide  { margin-inline: -2rem; }
+.alignfull  { margin-inline: calc(50% - 50vw); width: 100vw; }

@@ -1,0 +1,35 @@
+// ============================================================
+// SCSS 変数定義
+// Tailwind のテーマ設定と対応するSCSS変数を定義
+// ============================================================
+
+// カラーパレット（Tailwindのカスタムカラーと同期させる）
+$color-primary: #3b82f6;      // blue-500
+$color-secondary: #8b5cf6;    // violet-500
+$color-accent: #f59e0b;       // amber-500
+$color-dark: #111827;         // gray-900
+$color-light: #f9fafb;        // gray-50
+
+// タイポグラフィ
+$font-sans: ui-sans-serif, system-ui, sans-serif;
+$font-serif: ui-serif, Georgia, serif;
+$font-mono: ui-monospace, "Cascadia Code", monospace;
+
+// ブレークポイント（Tailwindのデフォルトと合わせる）
+$bp-sm: 640px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;
+$bp-2xl: 1536px;
+
+// スペーシング
+$container-max-width: 1280px;
+$container-padding: 1.5rem;
+
+// トランジション
+$transition-base: 150ms ease-in-out;
+$transition-slow: 300ms ease-in-out;
+
+// ボーダー
+$border-radius-base: 0.5rem;
+$border-radius-lg: 1rem;

@@ -1,0 +1,19 @@
+/*
+Theme Name:  My Theme
+Theme URI:   https://github.com/yourname/wp-theme-template
+Author:      Your Name
+Author URI:  https://yoursite.com
+Description: WordPress オリジナルテーマ（Vite + Tailwind CSS + SCSS）
+Version:     1.0.0
+Requires at least: 6.4
+Tested up to:      6.7
+Requires PHP:      8.1
+License:           GPL v2 or later
+License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:       my-theme
+*/
+
+/*
+ * このファイルはWordPressがテーマを認識するためのヘッダー情報のみを記述します。
+ * 実際のスタイルは theme/src/scss/style.scss → Viteビルド → theme/dist/ に出力されます。
+ */

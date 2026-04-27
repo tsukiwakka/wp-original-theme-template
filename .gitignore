@@ -1,0 +1,37 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# Vite ビルド成果物（本番ビルドはCIで生成）
+theme/dist/
+
+# Vite 開発サーバーシグナルファイル
+theme/.vite-dev-server
+
+# 環境変数（機密情報を含む可能性があるため）
+.env
+.env.local
+.env.*.local
+
+# Docker ボリューム
+.docker/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# WordPress
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/cache/
+*.log
+
+# 一時ファイル
+*.tmp
+*.temp

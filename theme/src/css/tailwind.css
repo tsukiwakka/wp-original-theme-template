@@ -1,0 +1,9 @@
+/* Tailwind CSS v4 エントリーポイント */
+@import "tailwindcss";
+
+/* スキャン対象ファイルを明示（ここに書かれたファイルのクラスが生成される）
+ * v4では @source ディレクティブで指定する
+ */
+@source "../../../theme/**/*.php";
+@source "../js/**/*.js";
+@source "../scss/**/*.scss";
